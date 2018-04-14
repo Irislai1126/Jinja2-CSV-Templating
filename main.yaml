@@ -9,14 +9,16 @@
 
 - name: Generate Configuration
   hosts: localhost
-  gather_facts: false
+  gather_facts: False
+  vars:
+    - debug: False
   vars_files:
     - TP.yaml
   
   tasks:
     - name: Print vars_file
-      debug: var=item
-      with_items: "{{csv_data}}"
+      debug: var=csv_data
+      when: debug
 
     - name: Generate configuration
       template:

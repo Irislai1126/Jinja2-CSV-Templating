@@ -1,3 +1,0 @@
-csv_data:
-- {ifd0: ge-1/0/1, ifd0_unit0: '0', ifd0_unit0_ip0: 1.1.1.1/30, name: lol1}
-- {ifd0: ge-1/0/2, ifd0_unit0: '0', ifd0_unit0_ip0: 1.1.1.5/30, name: lol2}
