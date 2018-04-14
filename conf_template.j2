@@ -1,0 +1,18 @@
+#interface
+interfaces {
+    {{item.ifd0}} {
+        unit {{item.ifd0_unit0}} {
+            family inet {
+                address {{item.ifd0_unit0_ip0}};
+            }
+        }
+    }
+}
+
+{% set default_next_hop0 = item.ifd0_unit0_ip0.split("/")[0].split(".")[0:3] | join(".") + "." + (item.ifd0_unit0_ip0.split("/")[0].split(".")[3]|int + 1)|string %}
+#static route
+routing-options {
+    static {
+        route 0.0.0.0/0 next-hop {{default_next_hop0}};
+    }
+}

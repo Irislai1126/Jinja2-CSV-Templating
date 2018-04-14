@@ -1,0 +1,25 @@
+---
+- name: Parse CSV to JSON
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: parse csv and make vars file
+      command: "python csv_to_yaml.py TP.csv"
+
+- name: Generate Configuration
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - TP.yaml
+  
+  tasks:
+    - name: Print vars_file
+      debug: var=item
+      with_items: "{{csv_data}}"
+
+    - name: Generate configuration
+      template:
+        src: "./conf_template.j2"
+        dest: "./{{item.name}}.txt"
+      with_items: "{{csv_data}}"
